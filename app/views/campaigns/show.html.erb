@@ -4,24 +4,29 @@
 			<h3><%= @campaign.property %> Projects </h3> 
 			<p>
 				<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-				<%= link_to 'Back', campaign_path %>
+				<%= link_to 'Back', campaigns_path %>
 			</p>
-			 <table class="table table-striped">
-			    <thead>
-			      <tr>
-						    <th>Project Name</th>
-						    <th>Target Launch</th>
-						    <th>Review Link</th>
-						    <th>Build Link</th>
-						    <th>Live Link</th>
-						    <th>Status Notes</th>
-			      </tr>
-			    </thead>
-			    <tbody>
+			<% @campaign.projects.each do |project| %>
+  			<p><b>Name: </b><%= project.name %></p>
+			<% end %>
 
-					</tbody>
-			  </table>
-			<br />
+<h2>Add a project:</h2>
+<%= form_for([@campaign, @campaign.projects.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
 		</div>
 	</div>
 </div>
